@@ -16,14 +16,15 @@ def preprocess_image(img):
 	img = img / 255.0
 
 	#=====[ Step 2: downsample	]=====
-	shape = image.shape
-	new_shape = tuple([s/10 for s in img[0].shape])
+	shape = img.shape
+	new_shape = tuple([s/10 for s in img.shape])
 	img = resize(img, new_shape)
 
 	#=====[ Step 3: denoise	]=====
 	denoised = denoise_bilateral(img, sigma_range=0.05, sigma_spatial=15)
 
-def 
+	return denoised
+
 
 def load_test_images(images_dir='./data/image', num_images=5, bw=True):
 	"""
