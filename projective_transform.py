@@ -14,57 +14,47 @@ def draw_quad(img, vx, value=255):
     return img
 
 
-class ProjectiveTransformer():
+class ProjectiveTransformer(object):
 	"""
-		Class: ProjectiveTransformer
-		----------------------------
-		finds transformation from info_space -> book_space
+		Transform: ProjectiveTransformer
+		--------------------------------
+		(image, surface_corners) -> surface_contents 
+
+		- std_rect: square in info_space
+		- M: transform from info_space to surface_space
 	"""
 	def __init__(self):
-		#=====[ Step 1: initialize std rect in info space	]=====
-		self.std_rect = np.array([
-	                [0, 0], #bottom left
-	                [1, 0], #top left
-	                [1, 1], #top right
-	                [0, 1] #bottom right
-		]).astype(np.float64)
-
-		self.M = tf.ProjectiveTransform()		#transform: image_space -> info_space
-
-
-	def fit(self, dst):
-		"""
-			finds self.M from book_corners 
-		"""
-		#=====[ Step 1: assertions on size	]=====
-		assert dst.shape == (4, 2)
-
-		#=====[ Step 2: find transform	]=====
-		src = np.array((
-					    	(0, 0),
-					    	(0, 100),
-					    	(100, 100),
-					    	(100, 0)
-						))
+		self.std_rect = np.array((
+	                				(0, 0), #bottom left
+					                (0, 100), #top left
+	        				        (100, 100), #top right
+					                (100, 0) 	#bottom right
+		)).astype(np.float64)
 		self.M = tf.ProjectiveTransform()
-		self.M.estimate(src, dst)
+		return self
 
 
-	def grab_surface(self, image):
+	def fit(self, image):
+		pass
+
+
+	def transform(self, data):
 		"""
-			grabs a square image representing the surface 
+			data = (image, surface_corners)
+			returns region in image bounded by surface_corners as a 100x100 
+			numpy array 
 		"""
+		#=====[ Step 1: Input validation	]=====
+		if not (type(data) == tuple) and (len(data) == 2):
+			raise TypeError("Pass in (image, corners); you passed %s" % str(type(data)))
+		(image, corners) = data
+		if not (type(corners) == np.array) and (corners.shape == (4,2)):
+			raise TypeError("corners must be a 4x2 numpy array")
+
+		#=====[ Step 2: Find projective transform	]=====	
+		self.M.estimate(self.std_rect, corners)
+
+		#=====[ Step 3: grab surface	]=====
 		return tf.warp(image, self.M, output_shape=(100,100))
-
-
-	def project(self, image, info_image, coords):
-		"""
-			projects 'info_image' onto image according to coords 
-		"""
-		
-		return tf.warp(info_image, self.M.inverse, output_shape=image.shape)
-
-
-
 
 
