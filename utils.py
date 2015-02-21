@@ -22,9 +22,7 @@ def preprocess_image(img):
 
 	#=====[ Step 3: denoise	]=====
 	denoised = denoise_bilateral(img, sigma_range=0.05, sigma_spatial=15)
-
 	return denoised
-
 
 def load_test_images(images_dir='./data/image', num_images=5, bw=True):
 	"""
