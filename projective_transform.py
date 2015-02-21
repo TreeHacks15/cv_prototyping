@@ -14,10 +14,10 @@ def draw_quad(img, vx, value=255):
     return img
 
 
-class ProjectiveTransformer(object):
+class Projective_T(object):
 	"""
-		Transform: ProjectiveTransformer
-		--------------------------------
+		Transform: Projective_T
+		-----------------------
 		(image, surface_corners) -> surface_contents 
 
 		- std_rect: square in info_space
@@ -31,11 +31,10 @@ class ProjectiveTransformer(object):
 					                (100, 0) 	#bottom right
 		)).astype(np.float64)
 		self.M = tf.ProjectiveTransform()
-		return self
 
 
 	def fit(self, image):
-		pass
+		return self
 
 
 	def transform(self, data):
@@ -48,8 +47,8 @@ class ProjectiveTransformer(object):
 		if not (type(data) == tuple) and (len(data) == 2):
 			raise TypeError("Pass in (image, corners); you passed %s" % str(type(data)))
 		(image, corners) = data
-		if not (type(corners) == np.array) and (corners.shape == (4,2)):
-			raise TypeError("corners must be a 4x2 numpy array")
+		if not (type(corners) == np.ndarray) and (corners.shape == (4,2)):
+			raise TypeError("corners must be a 4x2 numpy ndarray; you passed %s" % str(corners.shape))
 
 		#=====[ Step 2: Find projective transform	]=====	
 		self.M.estimate(self.std_rect, corners)
