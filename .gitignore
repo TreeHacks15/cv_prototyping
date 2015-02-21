@@ -1,0 +1,6 @@
+#=====[ General ]=====
+*.npy
+*~
+
+#=====[ Data ]=====
+data/videos/*
