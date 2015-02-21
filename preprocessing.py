@@ -5,7 +5,7 @@ class Preprocess_T(object):
 	""" 
 		Transform: Preprocess_T
 		-----------------------
-		image -> preprocessed image
+		(color) image -> preprocessed image
 
 		Steps:
 		------
@@ -20,6 +20,6 @@ class Preprocess_T(object):
 		
 	def transform(self, data):
 		img = data
-	    img = imresize(img, self.scale)
-	    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-	    return img
+		img = imresize(img, self.scale)
+		img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+		return img
