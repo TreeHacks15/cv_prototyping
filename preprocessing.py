@@ -3,9 +3,15 @@ import cv2
 
 class Preprocess_T(object):
 	""" 
-		downsample image and convert to grayscale 
-	"""
+		Transform: Preprocess_T
+		-----------------------
+		image -> preprocessed image
 
+		Steps:
+		------
+		- resize
+		- covnert to grayscale
+	"""
 	def __init__(self, scale=.1):
 		self.scale = scale
 
@@ -13,6 +19,7 @@ class Preprocess_T(object):
 		return self
 		
 	def transform(self, data):
+		img = data
 	    img = imresize(img, self.scale)
 	    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	    return img
