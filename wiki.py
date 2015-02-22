@@ -31,14 +31,13 @@ for i in range(0,len(urls)):
 if not wikiPageURL:
 	print("Couldn't find anything for you!")
 	exit()
-print(wikiPageURL)
-match = re.search(r"(wiki/)",wikiPageURL)
 
+match = re.search(r"(wiki/)",wikiPageURL)
 wikiPage = wikiPageURL[match.start(1)+len("wiki/"):]
 
 # info = textwrap.wrap(wikipedia.summary(wikiPage, sentences = 3), width = 60)
 
-print(wikipedia.summary(wikiPage,sentences = 3))
+print(wikipedia.summary(wikiPage,sentences = 3).encode('utf-8'))
 
 
 

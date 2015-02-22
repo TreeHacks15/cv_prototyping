@@ -75,10 +75,10 @@ class wolfram(object):
         if(mode == 'compute'):
               # m = re.search(r"(.*\.[0-9]{2})", element.text)
             # print(m.group(1))
-            print(element.text)
+            print(element.text.encode('utf-8'))
         else:
             imgURL = (element.attrib.get("src"))
-            print(imgURL)
+            print(imgURL.encode('utf-8'))
             # urllib.urlretrieve(imgURL, mode + '.jpg')
 
  
