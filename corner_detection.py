@@ -1,9 +1,11 @@
 import numpy as np
 import cv2
 
-class CornerDetector(object):
+class CornerDetector_T(object):
     """
-        Find corners of largest plane in image
+        Transform: CornerDetector
+        -------------------------
+        image -> (image, corners of planar surface)
     """ 
 
     def __init__(self, hough_thresh=70, angle_thresh=.2):
