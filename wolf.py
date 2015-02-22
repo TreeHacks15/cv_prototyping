@@ -68,9 +68,9 @@ class wolfram(object):
         
         element = result_dics
 
-        # if not element:
-        #     print("Sorry, I couldn't find information for you!")
-        #     exit()
+        if not element:
+            print("/images/none.png")
+            exit()
 
         if(mode == 'compute'):
               # m = re.search(r"(.*\.[0-9]{2})", element.text)
