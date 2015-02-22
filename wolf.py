@@ -24,9 +24,13 @@ class wolfram(object):
         #retrieving every tag with label 'plaintext'
         for e in tree.findall('pod'):
             if(sys.argv[1] == 'plot'):
+                print('test1')
                 if e.attrib.get("title") == 'Plot' or e.attrib.get("title") == 'Plots':
+                    print('test2')
                     for item in [ef for ef in list(e) if ef.tag=='subpod']:
+                        print('test3')
                         for it in [i for i in list(item) if i.tag=='img']:
+                            print('test4')
                             if it.tag=='img':
                                 return it
                                 # data_dics[e.get('title')] = it
@@ -57,7 +61,7 @@ class wolfram(object):
                             if it.tag=='img':
                                 return it
                
-        return data_dics
+        return 0
  
     def search(self, ip):
         mode = sys.argv[1]
@@ -68,9 +72,10 @@ class wolfram(object):
         
         element = result_dics
 
-        if not element:
+        if element == 0:
             print("/images/none.png")
             exit()
+
 
         if(mode == 'compute'):
               # m = re.search(r"(.*\.[0-9]{2})", element.text)
