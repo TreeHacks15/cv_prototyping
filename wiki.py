@@ -16,7 +16,7 @@ br.set_handle_equiv(False)
 br.addheaders = [('User-agent', 'Mozilla/5.0')] 
 br.open('http://www.google.com/')   
 br.select_form(name='f') 
-query = "+".join(sys.argv[1:len(sys.argv)]) + 'book' + 'wikipedia'
+query = "+".join(sys.argv[1:len(sys.argv)]) + 'wikipedia'
 
 br.form['q'] = query
 data = br.submit()
