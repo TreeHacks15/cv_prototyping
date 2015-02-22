@@ -26,7 +26,7 @@ if __name__ == '__main__':
 	cube = Cube()
 
 	#=====[ Step 1: load frames	]=====
-	for path, frame in iter_rubiks_video(video=1, data_dir='./data/'):
+	for path, frame in iter_rubiks_video(video=2, data_dir='./data/'):
 		labels = []
 
 		contours = cube.get_contours(frame)
@@ -48,7 +48,6 @@ if __name__ == '__main__':
 					labels.append(0)
 					break
 
-		print labels
 		save_labels(path, labels)
 
 
