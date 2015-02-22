@@ -38,8 +38,12 @@ class Projective_T(object):
 		if not (type(data) == tuple) and (len(data) == 2):
 			raise TypeError("Pass in (image, corners); you passed %s" % str(type(data)))
 		(image, corners) = data
-		if not (type(corners) == np.ndarray) and (corners.shape == (4,2)):
-			raise TypeError("corners must be a 4x2 numpy ndarray; you passed %s" % str(corners.shape))
+		if type(corners) == list:
+			corners = np.array(corners).astype(np.float64)
+		if not (type(corners) == np.ndarray):
+			raise TypeError("corners must be an numpy ndarray; you passed %s" % str(type(corners)))
+		if not corners.shape == (4,2):
+			raise TypeError("corners must be 4x2; you passed %s" % str(corners.shape))
 
 		#=====[ Step 2: Find projective transform	]=====	
 		self.M.estimate(self.std_rect, corners)

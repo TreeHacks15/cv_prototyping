@@ -16,12 +16,15 @@ class CornerDetector_T(object):
         return self
         
     def transform(self, img):
-        img = self.preprocess(img)
-        lines, points = self.hough(img)
+        """
+            img -> img, corners
+        """
+        img_copy = self.preprocess(img)
+        lines, points = self.hough(img_copy)
         pairs = self.find_pairs(lines)
-        areas = self.pairwise_area(img, points, pairs)
+        areas = self.pairwise_area(img_copy, points, pairs)
         corners = self.largest_plane(areas, points, pairs)
-        return corners
+        return img, corners
 
     def preprocess(self, img):
         img = img.copy()

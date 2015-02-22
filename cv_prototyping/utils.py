@@ -1,6 +1,7 @@
 import os
-import cv2
 import numpy as np
+import random
+import cv2
 import matplotlib.pyplot as plt
 
 
@@ -17,6 +18,7 @@ def load_test_images(num_images=5, bw=True):
     """
     images_dir = os.path.join(get_data_dir(), 'image')
     image_paths = [os.path.join(images_dir, p) for p in os.listdir(images_dir) if p.endswith('.jpg')]
+    random.shuffle(image_paths)
     return [cv2.imread(p) for p in image_paths[:num_images]]
 
 
@@ -30,7 +32,6 @@ def show_images(images, n=4):
         axes[i].imshow(img, cmap=plt.cm.gray)
         axes[i].set_xticks([])
         axes[i].set_yticks([])
-    return fig, axes
 
 
 def draw_quad(img, vx, value=255):

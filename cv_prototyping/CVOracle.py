@@ -10,7 +10,7 @@ from projection import Projective_T
 from ocr import OCR_T
 
 
-class CVOracle():
+class CVOracle(object):
 	"""
 		Class: CVOracle
 		---------------
@@ -21,25 +21,25 @@ class CVOracle():
 		#=====[ image2contents:	]=====
 		# input: image containing a rectangular surface
 		# output: contents of that image
-		image2contents = Pipeline 	([
-										('preprocess', 		CVPreprocessor()),
-										('get corners',  	CornerDetector()),
-										('get contents', 	Projective_T())
-									])
+		self.image2contents = Pipeline 	([
+											('preprocess', 		Preprocess_T()),
+											('get corners',  	CornerDetector_T()),
+											('get contents', 	Projective_T())
+										])
 
 	def get_surface_contents(self, image):
 		"""
 		raw image -> image containing contents
 		"""
-		return image2contents.transform(image)
+		return self.image2contents.transform(image)
 
 
 	def interpret_surface_contents(self, image):
 		"""
 		image of surface contents -> textual representation
 		"""
+		pass
 		
-
 
 	def update(self, image):
 		"""
