@@ -8,7 +8,7 @@ class CornerDetector_T(object):
         image -> (image, corners of planar surface)
     """ 
 
-    def __init__(self, hough_thresh=70, angle_thresh=.2):
+    def __init__(self, hough_thresh=60, angle_thresh=.2):
         self.hough_thresh = hough_thresh
         self.angle_thresh = angle_thresh
 
