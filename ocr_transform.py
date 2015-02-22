@@ -22,4 +22,4 @@ class OCR_T(object):
 			image -> contained text 
 		"""
 		image = data
-		
+		raise NotImplementedError
