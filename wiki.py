@@ -28,6 +28,9 @@ for i in range(0,len(urls)):
         wikiPageURL = urls[i]
         break
     
+if not wikiPageURL:
+	print("Couldn't find anything for you!")
+	exit()
 print(wikiPageURL)
 match = re.search(r"(wiki/)",wikiPageURL)
 
