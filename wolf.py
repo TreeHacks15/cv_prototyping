@@ -24,13 +24,9 @@ class wolfram(object):
         #retrieving every tag with label 'plaintext'
         for e in tree.findall('pod'):
             if(sys.argv[1] == 'plot'):
-                print('test1')
                 if e.attrib.get("title") == 'Plot' or e.attrib.get("title") == 'Plots':
-                    print('test2')
                     for item in [ef for ef in list(e) if ef.tag=='subpod']:
-                        print('test3')
                         for it in [i for i in list(item) if i.tag=='img']:
-                            print('test4')
                             if it.tag=='img':
                                 return it
                                 # data_dics[e.get('title')] = it
