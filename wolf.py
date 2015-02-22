@@ -79,7 +79,7 @@ class wolfram(object):
         else:
             imgURL = (element.attrib.get("src"))
             print(imgURL)
-            urllib.urlretrieve(imgURL, mode + '.jpg')
+            # urllib.urlretrieve(imgURL, mode + '.jpg')
 
  
 if __name__ == "__main__":
