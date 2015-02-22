@@ -12,7 +12,7 @@ class Preprocess_T(object):
 	def fit(self, data):
 		return self
 		
-	def transform(self, data):
+	def transform(self, img):
 	    img = imresize(img, self.scale)
 	    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	    return img
