@@ -36,8 +36,9 @@ match = re.search(r"(wiki/)",wikiPageURL)
 
 wikiPage = wikiPageURL[match.start(1)+len("wiki/"):]
 
-print(info = textwrap.wrap(wikipedia.summary(wikiPage, sentences = 3), width = 60));
+# info = textwrap.wrap(wikipedia.summary(wikiPage, sentences = 3), width = 60)
 
+print(wikipedia.summary(wikiPage,sentences = 3))
 
 
 
