@@ -33,19 +33,19 @@ match = re.search(r"(wiki/)",wikiPageURL)
 
 wikiPage = wikiPageURL[match.start(1)+len("wiki/"):]
 
-info = textwrap.wrap(wikipedia.summary(wikiPage, sentences = 3), width = 60);
+print(info = textwrap.wrap(wikipedia.summary(wikiPage, sentences = 3), width = 60));
 
 
 
 
-font = ImageFont.load_default()
-img=Image.new("RGBA", (600,600),(255,0,0,0))
-draw = ImageDraw.Draw(img)
+# font = ImageFont.load_default()
+# img=Image.new("RGBA", (600,600),(255,0,0,0))
+# draw = ImageDraw.Draw(img)
 
-margin = offset = 40
-for line in info:
-    draw.text((margin, offset), line, font=font, fill="#aa0000")
-    offset += font.getsize(line)[1]
+# margin = offset = 40
+# for line in info:
+#     draw.text((margin, offset), line, font=font, fill="#aa0000")
+#     offset += font.getsize(line)[1]
 
-draw = ImageDraw.Draw(img)
-img.save("a_test.png", "GIF", transparency = 0)
+# draw = ImageDraw.Draw(img)
+# img.save("a_test.png", "GIF", transparency = 0)
