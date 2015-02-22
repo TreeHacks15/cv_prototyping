@@ -4,15 +4,6 @@ import skimage
 import skimage.transform as tf
 from skimage import draw
 
-def draw_quad(img, vx, value=255):
-    """draws a quadrilateral"""
-    x = vx[:,0]
-    y = vx[:,1]
-    rr, cc = draw.polygon(y, x)
-    img = img.copy()
-    img[rr,cc] = value
-    return img
-
 
 class Projective_T(object):
 	"""
