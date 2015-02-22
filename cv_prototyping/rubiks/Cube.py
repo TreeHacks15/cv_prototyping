@@ -67,18 +67,23 @@ class Cube(object):
 		return get_edges.transform(frame)
 
 
-	def draw_contours(self, frame, labels=None):
+	def draw_contours(self, frame, contours=None, labels=None):
 		"""
 			draws contours on the raw frame;
 			red = negative example
 			blue = positive example
 		"""
-		contours = self.get_contours(frame)
+		if contours is None:
+			contours = self.get_contours(frame)
+
 		cont_img = Crop_T().transform(frame.copy())
 		if not labels is None:
 			assert len(labels) == len(contours)
-			cv2.drawContours(cont_img, contours[labels], -1, (0, 255, 0), 3)
-			cv2.drawContours(cont_img, contours[~labels], -1, (255, 0, 0), 3)
+			contours = np.array(contours)
+			contours_pos = [contours[i] for i in range(len(contours)) if labels[i]]
+			contours_neg = [contours[i] for i in range(len(contours)) if not labels[i]]
+			cv2.drawContours(cont_img, contours_pos, -1, (0, 255, 0), 3)
+			cv2.drawContours(cont_img, contours_neg, -1, (255, 0, 0), 3)
 		else:
 			cv2.drawContours(cont_img, contours, -1, (255, 0, 0), 3)
 		return cont_img

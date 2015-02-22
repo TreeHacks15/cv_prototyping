@@ -22,11 +22,11 @@ def load_test_images(num_images=5, bw=True):
     return [cv2.imread(p) for p in image_paths[:num_images]]
 
 
-def load_rubiks_video(video=1, num_images=5, bw=False):
+def load_rubiks_video(data_dir='../data/', video=1, num_images=5, bw=False):
     """
     returns list of rubiks cubes
     """
-    rubiks_dir = os.path.join(get_data_dir(), 'rubiks/videos')
+    rubiks_dir = os.path.join(data_dir, 'rubiks/videos')
     video_dir = os.path.join(rubiks_dir, str(video))
     image_paths = [os.path.join(video_dir, p) for p in os.listdir(video_dir) if p.endswith('.jpg')]
     random.shuffle(image_paths)

@@ -28,7 +28,7 @@ class Gray_T(object):
 
 
 class CannyEdge_T(object):
-	def __init__(self, threshold1=20, threshold2=150, dilation=4):
+	def __init__(self, threshold1=20, threshold2=200, dilation=4):
 		self.threshold1 = threshold1
 		self.threshold2 = threshold2
 		self.dilation = dilation
