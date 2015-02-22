@@ -52,7 +52,7 @@ class Cube(object):
 		"""
 			raw frame -> cropped frame 
 		"""
-		return Contours_T().transform(frame)
+		return Crop_T().transform(frame)
 
 
 	def draw_edges(self, frame):
@@ -79,7 +79,7 @@ class Cube(object):
 		cont_img = Crop_T().transform(frame.copy())
 		if not labels is None:
 			assert len(labels) == len(contours)
-			contours = np.array(contours)
+			# contours = np.array(contours)
 			contours_pos = [contours[i] for i in range(len(contours)) if labels[i]]
 			contours_neg = [contours[i] for i in range(len(contours)) if not labels[i]]
 			cv2.drawContours(cont_img, contours_pos, -1, (0, 255, 0), 3)
@@ -87,3 +87,14 @@ class Cube(object):
 		else:
 			cv2.drawContours(cont_img, contours, -1, (255, 0, 0), 3)
 		return cont_img
+
+
+	def draw_contour(self, frame, contour):
+		"""
+			draws a single contour 
+		"""
+		cont_img = Crop_T().transform(frame.copy())
+		cv2.drawContours(cont_img, [contour], -1, (0, 255, 0), 3)
+		return cont_img
+
+

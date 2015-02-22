@@ -3,6 +3,7 @@ import numpy as np
 import random
 import cv2
 import matplotlib.pyplot as plt
+from skimage import draw
 
 
 def get_data_dir():
@@ -22,6 +23,17 @@ def load_test_images(num_images=5, bw=True):
     return [cv2.imread(p) for p in image_paths[:num_images]]
 
 
+def iter_rubiks_video(video=1, data_dir='../data/'):
+    """
+    returns list of rubiks cubes
+    """  
+    rubiks_dir = os.path.join(data_dir, 'rubiks/videos')
+    video_dir = os.path.join(rubiks_dir, str(video))
+    image_paths = [os.path.join(video_dir, p) for p in os.listdir(video_dir) if p.endswith('.jpg')]
+    for p in image_paths:
+        yield p, cv2.imread(p)
+
+
 def load_rubiks_video(data_dir='../data/', video=1, num_images=5, bw=False):
     """
     returns list of rubiks cubes
@@ -29,7 +41,6 @@ def load_rubiks_video(data_dir='../data/', video=1, num_images=5, bw=False):
     rubiks_dir = os.path.join(data_dir, 'rubiks/videos')
     video_dir = os.path.join(rubiks_dir, str(video))
     image_paths = [os.path.join(video_dir, p) for p in os.listdir(video_dir) if p.endswith('.jpg')]
-    random.shuffle(image_paths)
     return [cv2.imread(p) for p in image_paths[:num_images]]
 
 
