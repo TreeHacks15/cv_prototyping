@@ -44,7 +44,7 @@ class wolfram(object):
                         for it in [i for i in list(item) if i.tag=='img']:
                             if it.tag=='img':
                                 return it
-            elif(sys.argv[1] == "chemPropeties"):
+            elif(sys.argv[1] == "chemProperties"):
                 if e.attrib.get("title") == 'Basic properties':
                     for item in [ef for ef in list(e) if ef.tag=='subpod']:
                         for it in [i for i in list(item) if i.tag=='img']:
