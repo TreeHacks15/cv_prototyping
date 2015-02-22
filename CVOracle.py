@@ -1,11 +1,13 @@
 import numpy as np 
 import scipy as sp
 import skimage
-from sklearn import Pipeline
+from sklearn.pipeline import Pipeline
 
-from preprocessing import CVPreprocessor
-from projective_transform import ProjectiveTransformer
-from corner_detection import CornerDetector
+#=====[ Transforms	]=====
+from preprocessing import Preprocess_T
+from corner_detection import CornerDetector_T
+from projective_transform import Projective_T
+
 
 class CVOracle():
 	"""
@@ -15,18 +17,27 @@ class CVOracle():
 	"""
 	def __init__(self):
 
-		self.preprocessor = CVPreprocessor() # image -> preprocessed image
-		self.corner_detector = CornerDetector() # image -> surface corners
-		self.pt = ProjectiveTransformer() # surface conrers -> surface contents
-
+		#=====[ image2contents:	]=====
+		# input: image containing a rectangular surface
+		# output: contents of that image
+		image2contents = Pipeline 	([
+										('preprocess', 		CVPreprocessor()),
+										('get corners',  	CornerDetector()),
+										('get contents', 	Projective_T())
+									])
 
 	def get_surface_contents(self, image):
 		"""
 		raw image -> image containing contents
 		"""
+		return image2contents.transform(image)
 
-		image = self.preprocessor.transform(image)
-		image = self.corner_detecor.transform()
+
+	def interpret_surface_contents(self, image):
+		"""
+		image of surface contents -> textual representation
+		"""
+		
 
 
 	def update(self, image):
