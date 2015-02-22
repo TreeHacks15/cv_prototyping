@@ -7,7 +7,8 @@ from sklearn.pipeline import Pipeline
 from preprocessing import Preprocess_T
 from corner_detection import CornerDetector_T
 from projection import Projective_T
-from ocr import OCR_T
+from ocr import ExtractStrokes_T
+from ocr import StrokesOCR_T
 
 
 class CVOracle(object):
@@ -26,6 +27,10 @@ class CVOracle(object):
 											('get corners',  	CornerDetector_T()),
 											('get contents', 	Projective_T())
 										])
+
+		self.contents2text = Pipeline([
+											('get contours', 	ExtractStrokes_T)
+									])
 
 	def get_surface_contents(self, image):
 		"""
