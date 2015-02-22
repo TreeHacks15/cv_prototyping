@@ -29,8 +29,11 @@ class CVOracle(object):
 										])
 
 		self.contents2text = Pipeline([
-											('get contours', 	ExtractStrokes_T)
+											('get contours', 	ExtractStrokes_T())
 									])
+
+		all_pipeline = Pipeline([self.image2contents, self.contents2text])
+
 
 	def get_surface_contents(self, image):
 		"""

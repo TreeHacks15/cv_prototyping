@@ -6,7 +6,7 @@ __all_ = [
 			'Preprocess_T', 'CornerDetector_T', 'Projective_T', 'ExtractStrokes_T', 'StrokesOCR_T',
 		
 			#=====[ Utils	]=====
-			'load_test_images', 'show_images', 'draw_quad'
+			'load_test_images', 'load_rubiks_video', 'show_images', 'draw_quad'
 		]
 		
 from CVOracle import CVOracle
@@ -15,5 +15,7 @@ from corner_detection import CornerDetector_T
 from ocr import ExtractStrokes_T
 from ocr import StrokesOCR_T
 from utils import load_test_images
+from utils import load_rubiks_video
 from utils import show_images
 from utils import draw_quad
+
