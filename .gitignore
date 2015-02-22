@@ -1,7 +1,13 @@
 #=====[ General ]=====
+.DS_Store
 *.npy
 *~
 *.pyc
+
+#=====[ setuptools ]=====
+build
+*.egg-info
+dist
 
 #=====[ Data ]=====
 data/video/*
