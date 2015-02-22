@@ -6,7 +6,8 @@ from sklearn.pipeline import Pipeline
 #=====[ Transforms	]=====
 from preprocessing import Preprocess_T
 from corner_detection import CornerDetector_T
-from projective_transform import Projective_T
+from projection import Projective_T
+from ocr import OCR_T
 
 
 class CVOracle():
